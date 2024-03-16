@@ -24,6 +24,7 @@
     <ProjectGuid>{7ff101ca-badf-474e-a24e-5a6e8c5a02f4}</ProjectGuid>
     <RootNamespace>github</RootNamespace>
     <WindowsTargetPlatformVersion>10.0</WindowsTargetPlatformVersion>
+    <ProjectName>stars</ProjectName>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
