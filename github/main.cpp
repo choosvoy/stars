@@ -1,12 +1,14 @@
 #include <iostream>
 #define _CRT_SECURE_NO_DEPRECATE
 #include <stdio.h>
+#include <Windows.h>
 
 
 void clear()
 {
 	system("cls");
 }
+
 
 
 int gameMapWidth()
@@ -112,13 +114,16 @@ void gameLogic()
 
 		if (getPlayerAnswer(randomNumWidth, randomNumHeight) == 1)
 		{
-			printf("Вы угадали\n");
+			printf("Поздравляю, Вы угадали!\n");
 			points++;
-		} else 
+		} 
+		else 
 		{
-			printf("Вы ошиблись\n");
 			lives--;
+			clear();
+			printf("О нет!!! Вы ошиблись, попробуйте снова\n");
 		}
+		Sleep(750);
 		clear();
 	}
 	
@@ -135,8 +140,66 @@ void gameLogic()
 	{
 		printf("Вы заработали %d очков\n", points);
 	}
-	printf("\n");
+	Sleep(1500);
+	clear();
+}
 
+void gameLogicSecond()
+{
+	char arr[20][20];
+	int randomNumWidth, randomNumHeight;
+	int lives = 3;
+	int points = 0;
+	int width = gameMapWidth();
+	int height = gameMapHeight();
+	int remainingStars = width * height;
+	clear();
+	resetGameMap(arr, width, height);
+	while (lives != 0 && remainingStars != 0) {
+
+		printf("Число жизней: %d\n", lives);
+		printf("\n");
+
+		// Генерируем координаты и устанавливаем # в игровое поле
+		srand(time(0));
+		do
+		{
+			randomNumWidth = rand() % width;
+			randomNumHeight = rand() % height;
+		} while (arr[randomNumWidth][randomNumHeight] != '*');
+		arr[randomNumWidth][randomNumHeight] = '#';
+		
+		printGameMap(arr, width, height);
+		remainingStars--;
+		if (getPlayerAnswer(randomNumWidth, randomNumHeight) == 1)
+		{
+			
+			printf("Поздравляю, Вы угадали!\n");
+		}
+		else
+		{
+			lives--;
+			clear();
+			printf("О нет!!! Вы ошиблись, попробуйте снова\n");
+			remainingStars = width * height;
+			resetGameMap(arr, width, height);
+
+		}
+		Sleep(750);
+		clear();
+	}
+
+	if (remainingStars == 0)
+	{
+		printf("Поздравляем, Вы победили!\n");
+	}
+
+	else
+	{
+		printf("К сожалению, Вы проиграли :(\n");
+	}
+	Sleep(2250);
+	clear();
 }
 
 int main()
@@ -146,20 +209,21 @@ int main()
 	int num;
 	do
 	{
-		printf("Выберите команду\n"); printf("1 - Запуск игры \"Звездочки\"\n"); printf("0 - Выход из программы\n");
+		printf("Выберите команду\n"); printf("1 - Запуск первой версии игры \"Звездочки\"\n"); printf("2 - Запуск второй версии игры \"Звездочки\"\n"); printf("0 - Выход из программы\n");
 		do
 		{
 			scanf_s("%d", &num);
-			if (num != 1 && num != 0)
+			if (num != 1 && num != 0 && num != 2)
 			{
 				printf("Попробуйте ввести корректные данные\n");
 			}
-		} while (num != 1 && num != 0);
+		} while (num != 1 && num != 0 && num != 2);
 		clear();
 		switch (num)
 		{
-		case 1:gameLogic();
-		case 0:printf("До свидания!\n");
+		case 1:gameLogic(); break;
+		case 2:gameLogicSecond(); break;
+		case 0:printf("До свидания!\n"); break;
 		}
 	} while (num != 0);
 	
