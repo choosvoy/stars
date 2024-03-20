@@ -18,10 +18,13 @@
     <ClCompile Include="main.cpp">
       <Filter>Исходные файлы</Filter>
     </ClCompile>
+    <ClCompile Include="Header.cpp">
+      <Filter>Исходные файлы</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <Text Include="..\..\..\..\Desktop\rating.txt">
+    <ClInclude Include="Header.h">
       <Filter>Исходные файлы</Filter>
-    </Text>
+    </ClInclude>
   </ItemGroup>
 </Project>
