@@ -6,7 +6,7 @@
 
 int main()
 {
-	setlocale(0, "");
+	setlocale(LC_ALL, "RU");
 
 	int num;
 	do
