@@ -7,8 +7,9 @@
 
 int main()
 {
-	system("chcp 1251");
-	setlocale(LC_ALL, "RU");
+	setlocale(0, "");
+	SetConsoleCP(CP_UTF8);
+	SetConsoleOutputCP(CP_UTF8);
 
 	int num;
 	do
